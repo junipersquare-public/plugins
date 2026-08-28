@@ -1,0 +1,128 @@
+/*
+ * jsq-report-render — color tokens
+ * Color source of truth for JSQ-rendered reports (widget + file).
+ * Place at: jsq-report-render/references/tokens.css
+ * Inline the relevant tokens into the report's <style> block.
+ *
+ * Color only. Font family, type scale, weights, letter-spacing, and
+ * font-variant-numeric were intentionally removed — those are owned by the
+ * render-target rules in SKILL.md (the file uses the system stack and full
+ * weight scale; the widget inherits the host font, caps weight at 500, and
+ * drops slashed-zero). Keeping them here would create a second, conflicting
+ * source of truth for typography.
+ *
+ * Naming follows the official JSQ color system ($color-* → --color-*).
+ * Semantic aliases (--jsq-*) map to palette tokens.
+ */
+
+/* ── Palette — Neutral ─────────────────────────────────────────────────── */
+:root {
+  --color-neutral-0:   #FFFFFF;   /* White */
+  --color-neutral-100: #F7F6F5;
+  --color-neutral-200: #F2F1EF;
+  --color-neutral-300: #E5E4E0;
+  --color-neutral-400: #C6C5C0;
+  --color-neutral-500: #AEADAC;
+  --color-neutral-600: #72716E;   /* Gray */
+  --color-neutral-700: #504F4C;
+  --color-neutral-800: #2C2C2A;   /* Text */
+  --color-neutral-900: #201F1C;   /* Heading */
+  --color-neutral-999: #000000;   /* Black */
+}
+
+/* ── Palette — Primary ─────────────────────────────────────────────────── */
+:root {
+  --color-primary-200: #EAF4F4;
+  --color-primary-300: #B6E4E6;
+  --color-primary-400: #67CCCE;
+  --color-primary-500: #16A0AC;
+  --color-primary-600: #017989;   /* Link Default */
+  --color-primary-700: #005868;
+  --color-primary-900: #042543;
+}
+
+/* ── Palette — Success ─────────────────────────────────────────────────── */
+:root {
+  --color-success-100: #EDF4F1;
+  --color-success-200: #00EB94;
+  --color-success-300: #00C27A;
+  --color-success-400: #00B070;
+  --color-success-500: #118462;
+  --color-success-600: #00614E;   /* Default */
+  --color-success-700: #004646;
+  --color-success-900: #0D3A1F;
+}
+
+/* ── Palette — Warning ─────────────────────────────────────────────────── */
+:root {
+  --color-warning-200: #FCECDC;
+  --color-warning-300: #FECC94;
+  --color-warning-400: #FE8638;
+  --color-warning-500: #FA6E1E;
+  --color-warning-600: #C8421E;   /* Default */
+  --color-warning-700: #A0301E;
+  --color-warning-900: #3A200E;
+}
+
+/* ── Palette — Danger ──────────────────────────────────────────────────── */
+:root {
+  --color-danger-200: #FFDDD4;
+  --color-danger-300: #FFB3B5;
+  --color-danger-400: #EB5757;
+  --color-danger-500: #CE3436;
+  --color-danger-600: #B61C3A;   /* Default */
+  --color-danger-700: #780026;
+  --color-danger-900: #390E0E;
+}
+
+/* ── Palette — Informative ─────────────────────────────────────────────── */
+:root {
+  --color-informative-200: #EEF5FC;
+  --color-informative-300: #CAE8F9;
+  --color-informative-400: #98D2F3;
+  --color-informative-500: #6CAEDC;
+  --color-informative-600: #086290;   /* Default */
+  --color-informative-700: #064260;
+  --color-informative-900: #1F0A3D;
+}
+
+/* ── Palette — Brand ───────────────────────────────────────────────────── */
+:root {
+  --color-brand: #00AA6C;
+}
+
+/* ── Semantic color tokens ─────────────────────────────────────────────────
+   Map functional roles to palette values.
+   Use these in component rules; never hardcode palette hex directly.
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Text */
+  --jsq-fg:   var(--color-neutral-900);   /* Titles, strong emphasis */
+  --jsq-fg-1: var(--color-neutral-800);   /* Body text */
+  --jsq-fg-2: var(--color-neutral-700);   /* Supporting text */
+  --jsq-fg-3: var(--color-neutral-600);   /* Muted, all labels */
+
+  /* Interactive / accent */
+  --jsq-primary-600: var(--color-primary-600);   /* Links, note callouts, footnote markers */
+  --jsq-primary-200: var(--color-primary-200);   /* Tinted backgrounds (callouts) */
+
+  /* Status */
+  --jsq-success-600: var(--color-success-600);
+  --jsq-success-100: var(--color-success-100);   /* Positive badge background */
+  --jsq-warning-600: var(--color-warning-600);   /* Warnings, headwind flags */
+  --jsq-warning-200: var(--color-warning-200);   /* Warning badge background */
+  --jsq-danger-600:  var(--color-danger-600);
+  --jsq-danger-200:  var(--color-danger-200);
+  --jsq-informative-600: var(--color-informative-600);
+  --jsq-informative-200: var(--color-informative-200);
+
+  /* Rules / borders */
+  --rule:        var(--color-neutral-300);   /* Section dividers, row borders */
+  --rule-strong: var(--color-neutral-400);   /* Section break accents, total-row tops */
+
+  /* Surfaces */
+  --bg-canvas: var(--color-neutral-100); /* HTML viewport background — cards sit on top of this */
+  --bg-page:   var(--color-neutral-0);   /* Card / content-area surface (white) */
+  --bg-soft:   var(--color-neutral-100); /* Badge backgrounds, callout fills */
+  --bg-subtle: var(--color-neutral-200); /* Hover states, zebra rows */
+}

@@ -1,0 +1,28 @@
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+*.secrets
+
+# Node
+node_modules/
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

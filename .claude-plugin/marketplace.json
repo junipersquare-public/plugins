@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "junipersquare",
+  "owner": {
+    "name": "Juniper Square",
+    "email": "ai@junipersquare.com"
+  },
+  "description": "Juniper Square Claude plugins — private markets platform integrations for investor relations, fundraising, fund administration, and documents.",
+  "plugins": [
+    {
+      "name": "junipersquare",
+      "displayName": "Juniper Square",
+      "source": "./",
+      "description": "Juniper Square is the operating system for the private markets. Query and act on your data across investor contacts, fund offerings, positions, subscriptions, documents, and more.",
+      "author": {
+        "name": "Juniper Square"
+      },
+      "homepage": "https://github.com/junipersquare-public/plugins",
+      "repository": "https://github.com/junipersquare-public/plugins",
+      "category": "finance",
+      "tags": ["private-markets", "investors", "funds", "gp", "ir", "fundraising"]
+    }
+  ]
+}

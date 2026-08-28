@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Entity ownership — Mossvale Fund, LLC</title>
+<style>
+  :root { color-scheme: light; --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  * { box-sizing: border-box; }
+  html, body { background:#FFFFFF; margin:0; }
+  body { font-family:var(--font-sans); color:#201F1C; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  .wrap { max-width:880px; margin:0 auto; padding:24px 24px 40px; }
+  h1 { font-size:22px; font-weight:500; margin:0; line-height:1.2; }
+  .leg { display:inline-flex; align-items:center; gap:6px; }
+  .sw { width:12px; height:12px; border-radius:3px; }
+  @page { size:letter; margin:0.5in; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0 16px; border-bottom:1px solid #E5E4E0; margin-bottom:20px;">
+  <svg width="18" height="18" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Juniper Square">
+    <g clip-path="url(#jsqo-clip)"><path d="M43.4528 4.51081H4.63774V43.3258H43.4528V4.51081ZM47.946 47.8371H0.126465V0.0175781H47.946V47.8371ZM32.0483 11.2597V16.1138V27.9695C32.0483 30.8928 31.146 33.0221 29.7205 34.4476C28.2949 35.8552 26.2919 36.577 24.0001 36.577C21.3656 36.577 19.4347 35.6567 18.0994 34.2311C16.7821 32.8055 16.0964 30.8747 16.0423 28.8537C16.0423 28.4747 16.0242 27.5905 16.0242 27.0852H20.0844C20.1205 28.4928 20.3911 29.6837 21.0047 30.5679C21.6543 31.5243 22.7009 32.0837 24.0362 32.0657C25.155 32.0657 26.0753 31.6867 26.6708 30.9649C27.2663 30.2251 27.555 29.1965 27.555 27.9153V15.7349H20.8242V11.2416H32.0483V11.2597Z" fill="#201F1C"/></g>
+    <defs><clipPath id="jsqo-clip"><rect width="48" height="48" fill="white"/></clipPath></defs>
+  </svg>
+  <span style="font-size:12px; font-weight:500; color:#72716E;">Confidential<span style="margin:0 7px;">·</span>31 May 2026<span style="margin:0 7px;">·</span><span style="font-size:10.5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:#FFFFFF; background:#005868; border-radius:999px; padding:3px 6px; vertical-align:middle;">Beta</span></span>
+</div>
+
+<div style="font-size:12px; font-weight:500; color:#72716E; margin:0 0 4px;">Entity ownership</div>
+<div style="margin:0 0 18px;"><h1>Mossvale Fund, LLC</h1></div>
+
+<div style="border:1px solid #E5E4E0; border-radius:8px; overflow:hidden; margin:0 0 1.2rem;">
+  <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid #E5E4E0;">
+    <span style="font-size:15px; font-weight:500;">Mossvale Fund, LLC</span>
+    <span style="background:#C8E8EC; color:#01545F; padding:2px 8px; border-radius:8px; font-size:11px; font-weight:500;">Fund</span>
+  </div>
+  <div style="padding:14px 12px; background:#FFFFFF;">
+    <pre class="mermaid" style="margin:0; background:transparent; text-align:center;">
+flowchart TB
+  AMOS["Amos Anderson<br/><span style='font-size:10px;color:#72716E'>$200M · 57%</span>"]:::inv
+  BILBO["Bilbo Dolla Sign<br/><span style='font-size:10px;color:#72716E'>$150M · 43%</span>"]:::inv
+  GPB["BSA GP I LLC<br/><span style='font-size:10px;color:#72716E'>General partner</span>"]:::inv
+  ALIX["Alix Jacobson Family Trust<br/><span style='font-size:10px;color:#72716E'>$200M · 67%</span>"]:::inv
+  AMH["Ashford Trust<br/><span style='font-size:10px;color:#72716E'>$100M · 33%</span>"]:::inv
+  ON["Mossvale Onshore, LLC"]:::inter
+  OFF["Mossvale Offshore, LLC"]:::inter
+  Mossvale["Mossvale Fund, LLC"]:::fund
+  SPV["Mossvale SPV 2, LLC"]:::spv
+  DSC["Mossvale Tidewater Supply Co.<br/><span style='font-size:10px;color:#72716E'>Operating company</span>"]:::opco
+  AMOS -->|"$200M · 57%"| ON
+  BILBO -->|"$150M · 43%"| ON
+  GPB --> ON
+  ALIX -->|"$200M · 67%"| OFF
+  AMH -->|"$100M · 33%"| OFF
+  ON -->|"$350M · 54%"| Mossvale
+  OFF -->|"$300M · 46%"| Mossvale
+  Mossvale --> SPV
+  Mossvale --> DSC
+  classDef fund fill:#C8E8EC,stroke:#017989,stroke-width:1.5px,color:#01545F
+  classDef inter fill:#E8F4F6,stroke:#4A8B95,stroke-width:1.5px,color:#01545F
+  classDef spv fill:#F6F4F0,stroke:#72716E,stroke-width:1.5px,color:#201F1C
+  classDef opco fill:#FFFFFF,stroke:#72716E,stroke-width:1px,stroke-dasharray:4 3,color:#201F1C
+  classDef inv fill:#FFFFFF,stroke:#C9C5BC,stroke-width:1px,color:#201F1C
+    </pre>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:#E5E4E0; border-top:1px solid #E5E4E0;">
+    <div style="background:#F7F6F5; padding:10px 14px;"><div style="font-size:11px; font-weight:500; color:#72716E;">Total commitment</div><div style="font-size:14px; margin-top:2px;">$650M</div></div>
+    <div style="background:#F7F6F5; padding:10px 14px;"><div style="font-size:11px; font-weight:500; color:#72716E;">Investors</div><div style="font-size:14px; margin-top:2px;">5 (4 LP · 1 GP)</div></div>
+    <div style="background:#F7F6F5; padding:10px 14px;"><div style="font-size:11px; font-weight:500; color:#72716E;">Holdings</div><div style="font-size:14px; margin-top:2px;">2</div></div>
+    <div style="background:#F7F6F5; padding:10px 14px;"><div style="font-size:11px; font-weight:500; color:#72716E;">Ownership metric</div><div style="font-size:14px; margin-top:2px;">By commitment</div></div>
+  </div>
+</div>
+
+<div style="display:flex; flex-wrap:wrap; gap:16px; padding-top:12px; border-top:1px solid #E5E4E0; font-size:12px; color:#72716E;">
+  <span class="leg"><span class="sw" style="background:#C8E8EC; border:1.5px solid #017989;"></span>Fund</span>
+  <span class="leg"><span class="sw" style="background:#E8F4F6; border:1.5px solid #4A8B95;"></span>Feeder / sub-entity</span>
+  <span class="leg"><span class="sw" style="background:#F6F4F0; border:1.5px solid #72716E;"></span>Asset SPV</span>
+  <span class="leg"><span class="sw" style="background:#FFFFFF; border:1px dashed #72716E;"></span>Operating company</span>
+  <span class="leg"><span class="sw" style="background:#FFFFFF; border:1px solid #C9C5BC;"></span>Investor</span>
+</div>
+
+<div style="font-size:11px; color:#72716E; line-height:1.6; margin-top:14px;">Active positions only · ownership by commitment. Feeders reconcile to 100% of the master; each feeder's investors reconcile to 100%. Mossvale Tidewater Supply Co. and Mossvale SPV 2 are held with no commitment metric recorded.</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.10.0/dist/mermaid.min.js" integrity="sha384-PY+AFiXLIHkR5jE4nk0JwPQQmmQlT4mJXFlgeT4jJeuARaBQBK+nSwwxzrPRAtUM" crossorigin="anonymous"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    securityLevel: "loose",
+    fontFamily: "system-ui, -apple-system, sans-serif",
+    themeVariables: { fontSize: "13px", lineColor: "#72716E", primaryTextColor: "#201F1C" },
+    flowchart: { htmlLabels: true, curve: "basis", padding: 14 }
+  });
+</script>
+</body>
+</html>
