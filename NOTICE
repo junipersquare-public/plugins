@@ -20,7 +20,7 @@ In particular, no permission is granted to:
     or official status of any fork, derivative work, or third-party
     integration built from this repository; or
   - use Juniper Square's brand color palette, typography, or visual design
-    tokens (see skills/jsq-report-render/references/tokens.css) to create
+    tokens (see skills/juniper-square-report-design/assets/report.css) to create
     materials that could be mistaken for official Juniper Square-published
     output.
 
@@ -38,15 +38,3 @@ Runtime access to Juniper Square data via the included MCP server
 configuration is governed separately by Juniper Square's Terms of Service
 and requires authentication as an authorized user of a Juniper Square
 customer account.
-
-------------------------------------------------------------------------------
-Third-party content
-------------------------------------------------------------------------------
-
-Certain skills in this repository instruct the calling client to load the
-Mermaid diagramming library (https://cdn.jsdelivr.net/npm/mermaid) at
-render time for producing diagrams (e.g., entity org charts). Mermaid is
-not bundled or redistributed as part of this repository; it is fetched
-directly by the end user's client at runtime under its own MIT license
-(https://github.com/mermaid-js/mermaid/blob/develop/LICENSE) and is not
-part of the Work licensed under the LICENSE file in this repository.

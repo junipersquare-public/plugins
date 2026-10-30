@@ -31,8 +31,10 @@ Claude activates these on its own, based on what you ask for.
 | `investor-tearsheet` | "tearsheet for [contact]", "prep me for my meeting with [LP]", "brief me on [LP]" |
 | `offering-action-report` | "action report for [offering]", "what needs my attention on [offering]", fundraise status checks |
 | `entity-org-chart` | "org chart", "entity structure diagram", "ownership chart", "show me Fund Y's structure" |
+| `document-coverage-audit` | "K-1 audit", "who's missing a K-1", "tax document check", "document coverage for Fund III" |
 | `juniper-square-data-model` | Any question about Juniper Square objects (Contact, Account, Offering, Position, etc.) or how they relate |
-| `jsq-report-render` | Shared rendering layer used by the report skills above — not invoked directly |
+| `juniper-square-studio` | "open Studio", "what can I build with Juniper Square", "show me ideas", "help me get started" |
+| `juniper-square-report-design` | Shared report design used by the report skills above and Studio — not invoked directly |
 
 ---
 
