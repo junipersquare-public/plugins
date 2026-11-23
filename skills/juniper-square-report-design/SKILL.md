@@ -14,18 +14,19 @@ Every Juniper Square report, whether from Studio, a saved build or another Junip
 
 ### 1. Build a report (always these steps)
 
-1. **Find this skill's folder in the shell.** The path can differ from the one the Skill tool shows:
-   `find / -path '*juniper-square-report-design/scripts/assemble.py' -not -path '/proc/*' 2>/dev/null | head -1`
+1. **Find this skill's folder** (`<skill>` below). It is `${CLAUDE_SKILL_DIR}`. Some apps mount skills at a different path in the shell; if the shell can't see that folder, look only under the working folder (`<skill>` is then the folder that holds the `scripts/` folder it finds):
+   `find . -maxdepth 7 -path '*/skills/juniper-square-report-design/scripts/assemble.py' 2>/dev/null | head -1`
+   Never search the whole file system. If neither works, follow the no-shell steps below.
 2. **Write two files** in the working folder (the outputs folder, which both the shell and the file tools can see):
    - `body.html`: only the page markup, `<main class="report"> … </main>`, following §4 and §5. No `<style>`, no `<script>`.
    - `data.js`: plain JavaScript: `const DATA = {…}` (pre-aggregated JSON, §8), then the render calls.
 3. **Assemble:**
    `python3 <skill>/scripts/assemble.py --title "<Report> · <scope>" --body body.html --data data.js --out <name>.html [--fragment]`
    - Use `--fragment` when publishing as an Artifact page (the Artifact tool adds the page skeleton). Without it you get a standalone `.html` file.
-   - The script checks for per-report CSS, scripts in the body, hex colours, banned "Not on file" wording and a missing footer. If it prints `CHECKS FAILED`, fix the parts and run it again.
+   - The script checks for per-report CSS, scripts in the body, hex colors, banned "Not on file" wording and a missing footer. If it prints `CHECKS FAILED`, fix the parts and run it again.
 4. **Deliver:** publish `<name>.html` with the Artifact tool if it exists; otherwise share the file. Exports are a spreadsheet file, not a page.
 
-**No shell available** (some chat clients): read `assets/report.css` and `assets/report.js` and paste them **verbatim** into `<style>` and `<script>` around your markup and data.
+**No shell, or the shell can't see this folder:** read `assets/report.css` and `assets/report.js` and paste them **verbatim** into `<style>` and `<script>` around your markup and data.
 
 ### 2. Tokens, fonts and theme
 
@@ -38,7 +39,7 @@ Every Juniper Square report, whether from Studio, a saved build or another Junip
 | Helper | Use |
 |---|---|
 | `fmt.money(v, {full})` | `$2.65M` / `$150k`; `{full:true}` gives `$500,000`. `—` when empty. |
-| `fmt.int(v)` · `fmt.pct(v)` | `1,157` · `41.2%` (input is already a percentage) |
+| `fmt.int(v)` · `fmt.pct(v)` | `1,240` · `41.2%` (input is already a percentage) |
 | `fmt.date(iso)` · `fmt.month(iso)` · `fmt.days(from, to)` | `17 Oct 2026` · `Oct 2026` · whole days between |
 | `esc(s)` | HTML-escape any text you put in markup strings |
 | `watch(el, draw)` | Redraw on resize (wrap `renderTrend`) |
@@ -80,7 +81,7 @@ Where a snippet shows a `<script>` block, its contents go in `data.js` without t
 <header class="rh">
   <div class="rh-main">
     <h1 class="title">Harbor Point Industrial SPV</h1>
-    <p class="lede">Nothing has closed yet. $2.65M is requested across six subscriptions, and the closest to closing has waited 372 days on staff review.</p>
+    <p class="lede">Nothing has closed yet. $2.65M is requested across six subscriptions, and the closest to closing has waited 45 days on staff review.</p>
   </div>
   <div class="rh-meta">
     <span class="scope">Prospects tagged Family office</span>
@@ -89,7 +90,7 @@ Where a snippet shows a `<script>` block, its contents go in `data.js` without t
 </header>
 ```
 
-**5.2 Scope and caveats.** The `.scope` line (plain text) states what the page covers in five words or fewer. When a limit changes how to read the figures and needs a sentence, add one `.caveat` line as the last child of `.rh-main`. Put the full explanation in About → Data limits. Never a banner, never coloured boxes.
+**5.2 Scope and caveats.** The `.scope` line (plain text) states what the page covers in five words or fewer. When a limit changes how to read the figures and needs a sentence, add one `.caveat` line as the last child of `.rh-main`. Put the full explanation in About → Data limits. Never a banner, never colored boxes.
 ```html
 <p class="caveat">Two subscriptions are in EUR and are shown separately; all other amounts are in USD.</p>
 ```
@@ -114,8 +115,8 @@ Where a snippet shows a `<script>` block, its contents go in `data.js` without t
   <div class="card kpi">
     <p class="kpi-label">Waiting on your team</p>
     <p class="kpi-value">1</p>
-    <p class="kpi-note">Dana Whitfield · $500,000</p>
-    <div class="kpi-viz"><span class="chip chip--watch">372 days in review</span></div>
+    <p class="kpi-note">Jordan Lee · $500,000</p>
+    <div class="kpi-viz"><span class="chip chip--watch">45 days in review</span></div>
   </div>
   <div class="card kpi kpi--quiet">
     <p class="kpi-label">Committed</p>
@@ -145,8 +146,8 @@ Where a snippet shows a `<script>` block, its contents go in `data.js` without t
   <header class="card-head"><div><h2 class="card-title">Do this next</h2><p class="card-sub">Ordered by how close each is to closing, then by amount.</p></div></header>
   <ol class="actions">
     <li class="action">
-      <div><p class="action-title">Finish staff review for Dana Whitfield</p><p class="action-detail">All eight investor steps are done and the DocuSign envelope was sent.</p></div>
-      <p class="action-fig">$500,000<small>372 days in review</small></p>
+      <div><p class="action-title">Finish staff review for Jordan Lee</p><p class="action-detail">All eight investor steps are done and the DocuSign envelope was sent.</p></div>
+      <p class="action-fig">$500,000<small>45 days in review</small></p>
     </li>
   </ol>
 </div>
@@ -239,7 +240,7 @@ renderSpark(document.getElementById('spark-new'), DATA.quarters.map(q => q.newCo
 </section>
 <script>
 renderOrg(document.getElementById('org'), {label: 'Ownership chart: one sentence per link…',
-  nodes: [{id: 'lps', name: '19 LP investors', type: 'inv', typeLabel: 'Investor group · 19 accounts', row: 0, col: 0},
+  nodes: [{id: 'lps', name: '12 LP investors', type: 'inv', typeLabel: 'Investor group · 12 accounts', row: 0, col: 0},
           {id: 'fund', name: 'Northgate Real Estate Fund II, LP', type: 'fund', row: 1, col: 0}],
   edges: [{from: 'lps', to: 'fund', pct: null}]});
 </script>
@@ -250,14 +251,14 @@ Layout rules (3–15 nodes):
 - Rows top to bottom: investor groups → fund(s) → holding companies (one row per level) → property companies.
 - `col` is a number; halves are allowed. Put a child at the average `col` of its parents. Siblings sit one column apart.
 - Max four nodes per row. More than four property companies: split them across two rows under the same parent.
-- Roll LP accounts into one `inv` node ("19 LP investors"). Never one node per investor.
+- Roll LP accounts into one `inv` node ("12 LP investors"). Never one node per investor.
 - `pct: null` when ownership isn't recorded; the label shows a muted "—".
 
 **5.12 About this report.** Always the last card. Definitions, Data limits, Sources, in that order; drop a block only if empty.
 ```html
 <section class="card about" aria-label="About this report">
   <div><h4>Definitions</h4><ul><li><b>Requested</b> is the amount an investor entered, not a commitment.</li></ul></div>
-  <div><h4>Data limits</h4><ul><li>Covers the 84 prospects tagged Family office, of 1,157 on this raise.</li></ul></div>
+  <div><h4>Data limits</h4><ul><li>Covers the 80 prospects tagged Family office, of 1,240 on this raise.</li></ul></div>
   <div><h4>Sources</h4><p>Juniper Square fundraising, retrieved 17 Oct 2026.</p></div>
 </section>
 ```
@@ -276,17 +277,17 @@ For term lists use `<dl><dt>Position</dt><dd>One holder’s stake in one entity.
 - Caveats never come first or look like warnings: `.scope` line, optional `.caveat` line, full text in About.
 - Sort lists and tables by closeness to done, then by amount, unless the report says otherwise.
 
-**6.2 Colour**
-- All colour comes from the tokens at the top of `report.css`. Teal leads: `--accent` (teal-300) for marks and fills, never body text; `--accent-strong` (moss) for accent text, the lead figure, bands and selection; `--accent-subtle` (mist) for washes.
+**6.2 Color**
+- All color comes from the tokens at the top of `report.css`. Teal leads: `--accent` (teal-300) for marks and fills, never body text; `--accent-strong` (moss) for accent text, the lead figure, bands and selection; `--accent-subtle` (mist) for washes.
 - Charts use `--series-1` … `--series-5` in order, `--series-6` only for "Other"; `--seq-1` … `--seq-5` for low → high; money in vs. out uses `--flow-called` (sky, plotted below zero) and `--flow-distributed` (green, above zero). Neither is red.
 - `--highlight` (butter) is one mark per **view**, always with a 1px `--text` edge and a label; never text, never a series.
 - Status chips use only the status pairs, never the accent, so a chip can't read as brand or selection. `--positive`/`--negative` always travel with ▲/+ or ▼/−. Early-fund net outflows stay in `--text` with a minus sign.
-- Links are quiet (§6.7): names never coloured or underlined; the one "Open ↗" affordance turns `--link` and underlines on hover.
+- Links are quiet (§6.7): names never colored or underlined; the one "Open ↗" affordance turns `--link` and underlines on hover.
 - No eyebrow above the title; the brand bar carries the report type. Card, KPI and table labels use label type in `--text-muted`, except the lead KPI label.
 - Surfaces: a surface on the page gets a 1px `--line` border; a region inside it gets a `--surface-subtle` fill. Never both, never neither. No shadows. Soft corners: 12px on surfaces, 8px on regions inside them and on controls, 4px on bars, pill only for chips and the Modeled tag.
 - Type: Moderat carries everything you read (400 and 500 only). Charter only for `.title` and display figures (`.kpi-value`, `.stat-value`). Every figure uses tabular lining numerals (the stylesheet sets them).
 - `--negative` only for real losses and misses, always with a word or ▼.
-- Never a hex value outside the stylesheet. Reference colours as tokens (`var(--series-1)`, `var(--accent-strong)` …). The old names (`--brand-*`, `--gold`, `--ink*`, `--paper`, `--hairline`) are retired; the assembler rejects them.
+- Never a hex value outside the stylesheet. Reference colors as tokens (`var(--series-1)`, `var(--accent-strong)` …). The old names (`--brand-*`, `--gold`, `--ink*`, `--paper`, `--hairline`) are retired; the assembler rejects them.
 
 **6.2a Actual vs. modeled**
 - Only modeled figures are tagged: `<span class="tag-modeled">Modeled</span>` in the KPI label or cell. Actuals stay untagged. Modeled values stay in `--text`, never muted.
@@ -316,7 +317,7 @@ For term lists use `<dl><dt>Position</dt><dd>One holder’s stake in one entity.
 
 **6.7 Links**
 - Link only when we can actually open the record in Juniper Square: a URL the connector returned for it. Today that's a document's `staffViewUrl`. Never build a link from a workspace address and an id, never guess one, and don't link external URLs.
-- Names are always plain text, never coloured or underlined. The link is a separate, quiet affordance: `openLink(url)` gives a muted "Open ↗" at the end of a table row (its own last column, no header) or after an action's detail.
+- Names are always plain text, never colored or underlined. The link is a separate, quiet affordance: `openLink(url)` gives a muted "Open ↗" at the end of a table row (its own last column, no header) or after an action's detail.
 - In `body.html`, write it as `<a class="open-link" href="<returned url>" target="_blank" rel="noopener noreferrer">Open</a>`. The assembler rejects any other link.
 
 ### 7. Which components each report uses
@@ -344,7 +345,7 @@ For term lists use `<dl><dt>Position</dt><dd>One holder’s stake in one entity.
 | >100,000 | Not suited to a client-side page; suggest a BI tool |
 
 ### 9. Verify before delivering
-- Built with `assemble.py`, and it printed "checks passed".
+- Built with `assemble.py`, and it printed "checks passed" (without a shell: the stylesheet and helpers were pasted verbatim).
 - KPI totals match the table and source data (spot-check two or three numbers).
 - No "Not on file" or "Not recorded" text anywhere; hidden columns are footnoted once.
 - Chips appear on a minority of rows; `--highlight` appears at most once on the page.
