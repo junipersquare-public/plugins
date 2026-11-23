@@ -6,7 +6,7 @@ The stylesheet (assets/report.css: the report tokens, then the components) and t
   --body  a file with the page markup: <main class="report"> ... </main>
   --data  a file with the data and render calls: const DATA = {...}; renderX(...);
 Usage:
-  python3 assemble.py --title "Fundraise update · Park Industries" \
+  python3 assemble.py --title "Fundraise update · Northgate Fund II" \
       --body body.html --data data.js --out report.html [--fragment] [--fonts fonts.css]
 --fragment  omit <!doctype>, <html>, <head> and <body> (for publishing as an Artifact page,
             which adds its own page skeleton). Without it, writes a full standalone HTML file.
@@ -48,10 +48,10 @@ def main():
         problems.append("body contains <script>: put data and render calls in --data instead")
     bad_hex = re.findall(r'style="[^"]*#[0-9a-fA-F]{3,8}', body)
     if bad_hex:
-        problems.append("inline style uses a hex colour: use a token such as var(--series-1)")
+        problems.append("inline style uses a hex color: use a token such as var(--series-1)")
     old = sorted(set(re.findall(r"var\(--(brand-\d+|gold|ink|ink-weak|paper|hairline|neg|on-brand|ok-bg|ok-fg|watch-bg|watch-fg|risk-bg|risk-fg|neutral-bg|sans|serif)\)", body + data)))
     if old:
-        problems.append("retired token names used: " + ", ".join("--" + o for o in old) + " (see the token map in SKILL.md)")
+        problems.append("retired token names used: " + ", ".join("--" + o for o in old) + " (see §6.2 Color in SKILL.md)")
     if re.search(r"font-weight:\s*(300|600|700|800|900)|font:\s*(300|600|700)\b", body + data):
         problems.append("font weight outside 400/500")
     for word in ("Not on file", "Not recorded", "N/A", "Sample data"):
