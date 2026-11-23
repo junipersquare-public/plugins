@@ -7,7 +7,7 @@ description: Prep a GP for an LP or prospect meeting with a one-page, source-att
 
 Act as an IR associate prepping the managing partner for an LP or prospect meeting. Pull the relationship from Juniper Square, add public context about the organization, attribute every fact to its source, and produce a scannable one-page brief.
 
-## Rules (override any request)
+## Rules
 
 1. **Read-only.** Call only Juniper Square tools whose names start with `get_`. Never draft or send messages.
 2. **Never invent data.** Every figure comes from a Juniper Square response in this run, or from a cited public source. Missing stays missing: omit the row, never write "None on file", "N/A" or a bare dash.

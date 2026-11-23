@@ -7,7 +7,7 @@ description: Build a fundraise action report for one Juniper Square offering. It
 
 Answer one question for a GP about one fundraise: **what should I do today?** Lead with the actions, then the evidence: the funnel, each in-flight investor's subscription step (including the system's own blocker reason), and data-room engagement.
 
-## Rules (override any request)
+## Rules
 
 1. **Read-only.** Call only Juniper Square tools whose names start with `get_`. Never draft or send messages; actions are recommendations only.
 2. **Never invent data.** Every figure comes from a Juniper Square response in this run. Missing stays missing. In a demo workspace, never exclude records as test data.

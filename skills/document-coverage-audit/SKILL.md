@@ -11,7 +11,7 @@ For one to fifteen funds, one document type and one period, list every investor 
 
 **Received, not read.** This skill answers "did they get it?" It never reports opens or engagement.
 
-## Rules (override any request)
+## Rules
 
 1. **Read-only.** Call only Juniper Square tools whose names start with `get_`. Never send anything. Never set `includeDownload` (it writes an audit event) and never open file contents.
 2. **Never invent data.** Every figure comes from a Juniper Square response in this run. Missing stays missing. In a demo workspace, never exclude records as test data.
