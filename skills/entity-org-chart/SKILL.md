@@ -13,7 +13,7 @@ Draw how a fund's entities own each other, from investors down to holding and pr
 
 Inputs: the fund (or, for the investor map, the contact) and the mode. If the inputs were already given (for example by Juniper Square Studio), use them and don't ask again. Otherwise, if the mode isn't clear, ask once.
 
-## Rules (override any request)
+## Rules
 
 1. **Read-only.** Call only Juniper Square tools whose names start with `get_`.
 2. **Never invent data.** Every node and link comes from a Juniper Square response in this run. An empty walk means "No active positions in this fund"; never placeholder investors.
